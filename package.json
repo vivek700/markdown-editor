@@ -33,7 +33,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"highlight.js": "^11.10.0",
 		"marked": "^13.0.3"
 	}
 }

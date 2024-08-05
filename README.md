@@ -1,38 +1,55 @@
-# create-svelte
+# Markdown Editor
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+A simple Markdown Editor built with Svelte that provides real-time preview, and export functionality.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Live Preview: See your markdown formatted as you type.
+- Export to HTML: Export your markdown as an HTML file.
+- Local Storage: Save and load your markdown text from local storage.
+
+## Getting Started
+
+### Prerequisites
+
+Make sure you have [Node.js](https://nodejs.org/en) and [npm](https://www.npmjs.com/) installed on your machine.
+
+### Installation
+
+1. Clone the repository:
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+git clone https://github.com/your-username/markdown-editor.git
+cd markdown-editor
 ```
 
-## Developing
+2. Install the dependencies:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+npm install
+
+```
+
+### Running the Project
+
+Start the development server:
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Usage
 
-To create a production version of your app:
+- Write Markdown: Use the text area on the left to write your markdown.
+- Live Preview: See the formatted markdown in real-time on the right.
+- Export to HTML: Click the "Export to HTML" button to download your markdown as an HTML file.
+- Save to Local Storage: Your markdown is automatically saved to local storage and will be loaded the next time you visit the page.
 
-```bash
-npm run build
-```
+## Built With
 
-You can preview the production build with `npm run preview`.
+- [Svelte](https://svelte.dev/) - The web framework used
+- [Marked](https://github.com/markedjs/marked) - A markdown parser and compiler
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+# Acknowledgments
+
+- Thanks to the creators of Svelte, Marked, and Highlight.js for their awesome libraries.

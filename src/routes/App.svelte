@@ -1,7 +1,5 @@
 <script>
-	import hljs from 'highlight.js';
 	import { marked } from 'marked';
-	import 'highlight.js/styles/github.css';
 	import { onMount } from 'svelte';
 
 	let markdown = 'Write something here...';
@@ -29,8 +27,7 @@
 	}
 
 	function exportToHTML() {
-		const htmlMarkdown = hljs.highlightAuto(html).value;
-		const blob = new Blob([htmlMarkdown], { type: 'type/html' });
+		const blob = new Blob([html], { type: 'type/html' });
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement('a');
 		link.href = url;
