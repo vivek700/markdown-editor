@@ -52,4 +52,4 @@ npm run dev
 
 # Acknowledgments
 
-- Thanks to the creators of Svelte, Marked, and Highlight.js for their awesome libraries.
+- Thanks to the creators of Svelte, and Marked for their awesome libraries.
