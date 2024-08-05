@@ -2,9 +2,23 @@
 	import hljs from 'highlight.js';
 	import { marked } from 'marked';
 	import 'highlight.js/styles/github.css';
+	import { onMount } from 'svelte';
 
 	let markdown = 'Write something here...';
 	let html = '';
+	let selectedOption = 'Preview';
+
+	onMount(() => {
+		const savedMarkdown = localStorage.getItem('markdown');
+		if (savedMarkdown) {
+			markdown = savedMarkdown;
+			updatePreview();
+		}
+	});
+
+	function saveToLocalStorage() {
+		localStorage.setItem('markdown', markdown);
+	}
 
 	async function updatePreview() {
 		let options = {
@@ -13,6 +27,18 @@
 
 		html = await marked.parse(markdown, options);
 	}
+
+	function exportToHTML() {
+		const htmlMarkdown = hljs.highlightAuto(html).value;
+		const blob = new Blob([htmlMarkdown], { type: 'type/html' });
+		const url = URL.createObjectURL(blob);
+		const link = document.createElement('a');
+		link.href = url;
+		link.download = 'markdown.html';
+		link.click();
+		URL.revokeObjectURL(url);
+	}
+
 	$: updatePreview();
 </script>
 
@@ -20,11 +46,13 @@
 
 <section class="flex justify-around mt-4">
 	<section class="w-5/12">
-		<button class="bg-fuchsia-800 text-slate-100 p-2 mb-2 mt-1 rounded text-sm"
-			>Export to HTML</button
+		<button
+			on:click={exportToHTML}
+			class="bg-fuchsia-800 text-slate-100 p-2 mb-2 mt-1 rounded text-sm">Export to HTML</button
 		>
 		<textarea
 			bind:value={markdown}
+			on:input={saveToLocalStorage}
 			on:input={updatePreview}
 			rows="30"
 			name="text"
@@ -32,11 +60,22 @@
 		></textarea>
 	</section>
 	<section class="w-5/12">
-		<p class="text-slate-100 font-sans py-3 m-0">Preview:</p>
+		<select
+			bind:value={selectedOption}
+			name="choice"
+			class="text-slate-100 bg-slate-950 font-sans py-1 mb-2 mt-3 cursor-pointer"
+		>
+			<option value="Preview">Preview</option>
+			<option value="HTML Source">HTML Source</option>
+		</select>
 		<div
 			class="w-full h-full rounded outline outline-1 outline-slate-700 bg-slate-950 text-slate-100 p-2 font-sans overflow-auto"
 		>
-			{@html html}
+			{#if selectedOption === 'Preview'}
+				{@html html}
+			{:else}
+				{html}
+			{/if}
 		</div>
 	</section>
 </section>
