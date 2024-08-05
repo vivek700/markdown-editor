@@ -41,8 +41,8 @@
 
 <h1 class="text-slate-50 text-center">Markdown Editor</h1>
 
-<section class="flex justify-around mt-4">
-	<section class="w-5/12">
+<section class="flex flex-col md:flex-row justify-around mt-4">
+	<section class="md:w-5/12 w-10/12 self-center md:self-auto">
 		<button
 			on:click={exportToHTML}
 			class="bg-fuchsia-800 text-slate-100 p-2 mb-2 mt-1 rounded text-sm">Export to HTML</button
@@ -56,7 +56,7 @@
 			class="font-sans text-sm w-full h-full p-2 bg-slate-950 text-slate-100 border-none outline outline-1 outline-slate-700 rounded"
 		></textarea>
 	</section>
-	<section class="w-5/12">
+	<section class="md:w-5/12 w-10/12 self-center md:self-auto">
 		<select
 			bind:value={selectedOption}
 			name="choice"
