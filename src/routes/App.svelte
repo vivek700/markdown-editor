@@ -2,15 +2,25 @@
 	import { marked } from 'marked';
 	import { onMount } from 'svelte';
 
-	let markdown = 'Write something here...';
+	let markdown = '';
 	let html = '';
 	let selectedOption = 'Preview';
 
-	onMount(() => {
+	onMount(async () => {
 		const savedMarkdown = localStorage.getItem('markdown');
 		if (savedMarkdown) {
 			markdown = savedMarkdown;
 			updatePreview();
+			return;
+		}
+
+		try {
+			const res = await fetch('./api/readFile');
+			const data = await res.json();
+			markdown = data.content;
+			updatePreview();
+		} catch (error) {
+			console.error(error);
 		}
 	});
 
